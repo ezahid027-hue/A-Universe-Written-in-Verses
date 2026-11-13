@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sehar — A Universe Written in Verses</title>
+<meta name="description" content="A literary universe dedicated to Sehar Eman Shahid — forty poems, twenty-five photographs, one soul. Written by Eman Zahid."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Dancing+Script:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+<style>
+/* ================== ROOT PALETTE ================== */
+:root{
+  --burgundy:#4A0E1F;
+  --burgundy-deep:#2D0812;
+  --burgundy-light:#6B1A2E;
+  --champagne:#D4AF37;
+  --champagne-soft:#E8C567;
+  --ivory:#F5EFE6;
+  --ivory-warm:#FAF6EC;
+  --dustyrose:#C9A0A0;
+  --midnight:#0A0A0A;
+  --midnight-soft:#1A1A1A;
+  --lavender:#B8A5C9;
+  --lavender-soft:#D4C5E0;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--midnight);
+  color:var(--ivory);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+::selection{background:var(--champagne);color:var(--burgundy-deep)}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:var(--midnight)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--burgundy),var(--champagne));border-radius:4px}
+
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:500;letter-spacing:.02em}
+.poetic{font-family:'Cormorant Garamond',serif}
+.script{font-family:'Dancing Script',cursive}
+
+/* ================== CUSTOM CURSOR ================== */
+@media (hover:hover){
+  .cursor-dot{
+    position:fixed;width:8px;height:8px;border-radius:50%;
+    background:var(--champagne);pointer-events:none;z-index:10001;
+    transition:transform .15s ease;mix-blend-mode:difference;
+  }
+  .cursor-ring{
+    position:fixed;width:36px;height:36px;border-radius:50%;
+    border:1px solid var(--champagne);pointer-events:none;z-index:10001;
+    transition:transform .3s ease, width .3s, height .3s;
+    transform:translate(-50%,-50%);
+  }
+  .cursor-ring.hover{width:60px;height:60px;border-color:var(--dustyrose)}
+}
+
+/* ================== LOADER ================== */
+#loader{
+  position:fixed;inset:0;background:var(--burgundy-deep);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  z-index:10000;transition:opacity 1.5s ease, visibility 1.5s;
+}
+#loader.hide{opacity:0;visibility:hidden}
+#loader .monogram{
+  font-family:'Playfair Display',serif;font-size:6rem;color:var(--champagne);
+  letter-spacing:.3em;animation:fadeUp 1.5s ease both;
+  text-shadow:0 0 40px rgba(212,175,55,.5);
+}
+#loader .sub{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:var(--ivory);opacity:.7;margin-top:1rem;letter-spacing:.25em;
+  animation:fadeUp 1.5s ease .4s both;font-size:1.1rem;
+}
+#loader .line{
+  width:0;height:1px;background:var(--champagne);margin-top:2rem;
+  animation:lineGrow 2s ease .6s forwards;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes lineGrow{to{width:200px}}
+
+/* ================== NAVIGATION ================== */
+nav.topnav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;
+  transition:all .5s ease;
+  background:linear-gradient(180deg,rgba(10,10,10,.7),transparent);
+  backdrop-filter:blur(8px);
+}
+nav.topnav.scrolled{background:rgba(10,10,10,.9);padding:.8rem 3rem;border-bottom:1px solid rgba(212,175,55,.15)}
+nav .brand{
+  font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--champagne);
+  letter-spacing:.3em;cursor:pointer;
+}
+nav .brand span{font-style:italic;color:var(--ivory);font-weight:300}
+nav ul{display:flex;gap:2.2rem;list-style:none}
+nav ul li a{
+  color:var(--ivory);text-decoration:none;font-size:.75rem;letter-spacing:.25em;
+  text-transform:uppercase;position:relative;padding:.3rem 0;transition:color .3s;
+  font-weight:400;
+}
+nav ul li a::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:1px;
+  background:var(--champagne);transition:width .4s ease;
+}
+nav ul li a:hover{color:var(--champagne)}
+nav ul li a:hover::after{width:100%}
+nav ul li a.active{color:var(--champagne)}
+nav ul li a.active::after{width:100%}
+
+.menu-toggle{display:none;background:none;border:none;color:var(--champagne);font-size:1.5rem;cursor:pointer}
+
+@media(max-width:900px){
+  nav.topnav{padding:1rem 1.5rem}
+  nav ul{
+    position:fixed;top:0;right:-100%;width:75%;height:100vh;
+    background:linear-gradient(135deg,var(--burgundy-deep),var(--midnight));
+    flex-direction:column;justify-content:center;align-items:center;gap:2rem;
+    transition:right .6s cubic-bezier(.77,0,.18,1);
+    border-left:1px solid rgba(212,175,55,.3);
+  }
+  nav ul.open{right:0}
+  .menu-toggle{display:block;z-index:1001}
+}
+
+/* ================== PAGE SYSTEM ================== */
+.page{
+  display:none;min-height:100vh;position:relative;
+  animation:pageIn 1.2s ease both;
+}
+.page.active{display:block}
+@keyframes pageIn{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ================== ENTRANCE / HOME ================== */
+#home{
+  min-height:100vh;position:relative;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 30% 20%,rgba(107,26,46,.4) 0%,transparent 50%),
+    radial-gradient(ellipse at 70% 80%,rgba(184,165,201,.15) 0%,transparent 50%),
+    radial-gradient(ellipse at center,var(--burgundy) 0%,var(--burgundy-deep) 55%,var(--midnight) 100%);
+  display:flex;align-items:center;justify-content:center;
+  padding:6rem 2rem;
+}
+#home::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 30%,rgba(212,175,55,.08),transparent 40%),
+    radial-gradient(circle at 80% 70%,rgba(184,165,201,.08),transparent 40%);
+  pointer-events:none;
+  animation:ambientShift 15s ease-in-out infinite;
+}
+@keyframes ambientShift{
+  0%,100%{opacity:.8}
+  50%{opacity:1}
+}
+
+.entrance-frame{
+  position:relative;padding:4rem 3rem;text-align:center;z-index:10;
+  max-width:900px;
+}
+.entrance-frame::before,.entrance-frame::after{
+  content:'';position:absolute;width:80px;height:80px;
+  border:1px solid var(--champagne);
+  animation:borderFade 2s ease .5s both;
+}
+.entrance-frame::before{top:0;left:0;border-right:none;border-bottom:none}
+.entrance-frame::after{bottom:0;right:0;border-left:none;border-top:none}
+@keyframes borderFade{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+
+.entrance-photo{
+  width:280px;height:380px;margin:0 auto 2.5rem;
+  position:relative;overflow:hidden;
+  border:1px solid rgba(212,175,55,.4);
+  box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 80px rgba(212,175,55,.15);
+  animation:photoFloat 6s ease-in-out infinite, photoIn 2s ease .3s both;
+}
+.entrance-photo img{width:100%;height:100%;object-fit:cover;filter:brightness(.95) contrast(1.05)}
+.entrance-photo::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(45,8,18,.6));
+}
+@keyframes photoFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-15px)}
+}
+@keyframes photoIn{
+  from{opacity:0;transform:scale(.9) translateY(20px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+.entrance-eyebrow{
+  font-size:.75rem;letter-spacing:.5em;text-transform:uppercase;
+  color:var(--champagne);margin-bottom:1.5rem;
+  animation:fadeUp 1.5s ease .2s both;
+}
+.entrance-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(4rem,12vw,9rem);
+  color:var(--champagne);letter-spacing:.2em;
+  text-shadow:0 0 60px rgba(212,175,55,.4);
+  animation:fadeUp 2s ease .4s both;
+  font-weight:400;
+}
+.entrance-tagline{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(1rem,1.6vw,1.35rem);color:var(--ivory);
+  max-width:640px;margin:2rem auto;line-height:1.8;
+  animation:fadeUp 1.8s ease .8s both;
+}
+.entrance-unique{
+  font-family:'Dancing Script',cursive;
+  font-size:clamp(1.4rem,2.2vw,1.9rem);
+  color:var(--dustyrose);margin:2rem auto;max-width:700px;
+  line-height:1.6;
+  animation:fadeUp 1.8s ease 1.2s both;
+}
+.entrance-welcome{
+  font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;
+  color:var(--lavender-soft);margin-top:2.5rem;
+  animation:fadeUp 1.8s ease 1.5s both;
+}
+.enter-btn{
+  display:inline-block;margin-top:3rem;padding:1.2rem 3.5rem;
+  background:transparent;border:1px solid var(--champagne);color:var(--champagne);
+  font-family:'Cormorant Garamond',serif;font-size:1rem;letter-spacing:.35em;
+  text-transform:uppercase;cursor:pointer;position:relative;overflow:hidden;
+  transition:all .6s ease;
+  animation:fadeUp 1.8s ease 1.8s both;
+}
+.enter-btn::before{
+  content:'';position:absolute;inset:0;background:var(--champagne);
+  transform:translateY(100%);transition:transform .5s ease;z-index:-1;
+}
+.enter-btn:hover{color:var(--burgundy-deep);letter-spacing:.4em}
+.enter-btn:hover::before{transform:translateY(0)}
+
+/* Petals & Dust */
+.petals,.dust{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+.petal{
+  position:absolute;width:14px;height:14px;
+  background:radial-gradient(circle at 30% 30%,var(--dustyrose),var(--burgundy-light));
+  border-radius:150% 0 150% 0;opacity:0;
+  animation:petalFall linear infinite;
+  filter:blur(.3px);
+}
+@keyframes petalFall{
+  0%{transform:translateY(-10vh) translateX(0) rotate(0);opacity:0}
+  10%{opacity:.7}
+  90%{opacity:.7}
+  100%{transform:translateY(110vh) translateX(120px) rotate(720deg);opacity:0}
+}
+.dust-particle{
+  position:absolute;width:3px;height:3px;background:var(--champagne);
+  border-radius:50%;opacity:0;
+  box-shadow:0 0 8px var(--champagne);
+  animation:dustFloat linear infinite;
+}
+@keyframes dustFloat{
+  0%{transform:translate(0,0);opacity:0}
+  50%{opacity:.9}
+  100%{transform:translate(40px,-80px);opacity:0}
+}
+
+/* ================== SECTION HEADER ================== */
+.section-hero{
+  min-height:70vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden;
+  background:linear-gradient(180deg,var(--burgundy-deep),var(--midnight));
+}
+.section-hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 15% 50%,rgba(212,175,55,.08),transparent 40%),
+    radial-gradient(circle at 85% 50%,rgba(184,165,201,.08),transparent 40%);
+}
+.section-hero .eyebrow{
+  font-size:.75rem;letter-spacing:.5em;text-transform:uppercase;
+  color:var(--champagne);margin-bottom:1.5rem;
+}
+.section-hero h1{
+  font-size:clamp(2.5rem,6vw,5rem);color:var(--ivory);
+  font-style:italic;margin-bottom:1.5rem;
+}
+.section-hero h1 span{color:var(--champagne)}
+.section-hero .divider{
+  width:80px;height:1px;background:var(--champagne);margin:2rem auto;
+  position:relative;
+}
+.section-hero .divider::before,.section-hero .divider::after{
+  content:'';position:absolute;top:-3px;width:7px;height:7px;
+  background:var(--champagne);border-radius:50%;
+}
+.section-hero .divider::before{left:-15px}
+.section-hero .divider::after{right:-15px}
+.section-hero p{
+  max-width:640px;margin:0 auto;font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:1.15rem;line-height:1.8;color:var(--ivory);opacity:.85;
+}
+
+/* ================== GALLERY ================== */
+.gallery-wrap{padding:6rem 2rem;background:var(--midnight)}
+.gallery-grid{
+  max-width:1400px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:130px;gap:1.2rem;
+}
+.gallery-item{
+  position:relative;overflow:hidden;cursor:pointer;
+  border:1px solid rgba(212,175,55,.2);
+  transition:transform .6s cubic-bezier(.2,.8,.2,1), box-shadow .6s;
+  background:var(--midnight-soft);
+  opacity:0;transform:translateY(40px);
+}
+.gallery-item.visible{opacity:1;transform:translateY(0) rotate(var(--rot,0deg))}
+.gallery-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.2s ease, filter .6s;
+  filter:brightness(.92) contrast(1.05) saturate(1.05);
+}
+.gallery-item:hover img{transform:scale(1.1);filter:brightness(1) contrast(1.1) saturate(1.1)}
+.gallery-item:hover{box-shadow:0 25px 70px rgba(212,175,55,.25);z-index:10}
+.gallery-item .caption{
+  position:absolute;left:0;right:0;bottom:0;padding:1.2rem;
+  background:linear-gradient(0deg,rgba(10,10,10,.95),transparent);
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:var(--ivory);font-size:.95rem;line-height:1.4;
+  opacity:0;transform:translateY(15px);transition:all .5s;
+}
+.gallery-item:hover .caption{opacity:1;transform:translateY(0)}
+.gallery-item::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent 60%,rgba(74,14,31,.3));
+  pointer-events:none;
+}
+.gallery-item .poem-num{
+  position:absolute;top:1rem;left:1rem;
+  font-size:.7rem;letter-spacing:.3em;color:var(--champagne);
+  background:rgba(10,10,10,.7);padding:.3rem .7rem;
+  border:1px solid rgba(212,175,55,.3);
+  opacity:0;transition:opacity .4s;
+}
+.gallery-item:hover .poem-num{opacity:1}
+
+/* Asymmetric layout */
+.g1{grid-column:span 5;grid-row:span 3;--rot:-1deg}
+.g2{grid-column:span 4;grid-row:span 2;--rot:1.5deg}
+.g3{grid-column:span 3;grid-row:span 2;--rot:-.5deg}
+.g4{grid-column:span 4;grid-row:span 3;--rot:.8deg}
+.g5{grid-column:span 4;grid-row:span 2;--rot:-1.2deg}
+.g6{grid-column:span 4;grid-row:span 2;--rot:1deg}
+.g7{grid-column:span 3;grid-row:span 2;--rot:-.8deg}
+.g8{grid-column:span 5;grid-row:span 3;--rot:1.2deg}
+.g9{grid-column:span 4;grid-row:span 2;--rot:-1deg}
+.g10{grid-column:span 4;grid-row:span 2;--rot:.5deg}
+.g11{grid-column:span 4;grid-row:span 3;--rot:-1.5deg}
+.g12{grid-column:span 4;grid-row:span 2;--rot:1deg}
+.g13{grid-column:span 4;grid-row:span 2;--rot:-.5deg}
+.g14{grid-column:span 5;grid-row:span 3;--rot:.8deg}
+.g15{grid-column:span 4;grid-row:span 2;--rot:-1deg}
+.g16{grid-column:span 3;grid-row:span 2;--rot:1.2deg}
+.g17{grid-column:span 4;grid-row:span 3;--rot:-.8deg}
+.g18{grid-column:span 4;grid-row:span 2;--rot:1deg}
+.g19{grid-column:span 4;grid-row:span 2;--rot:-1.2deg}
+.g20{grid-column:span 5;grid-row:span 3;--rot:.5deg}
+.g21{grid-column:span 4;grid-row:span 2;--rot:-1deg}
+.g22{grid-column:span 3;grid-row:span 2;--rot:1.5deg}
+.g23{grid-column:span 4;grid-row:span 3;--rot:-.5deg}
+.g24{grid-column:span 4;grid-row:span 2;--rot:1deg}
+.g25{grid-column:span 4;grid-row:span 2;--rot:-.8deg}
+
+@media(max-width:900px){
+  .gallery-grid{grid-template-columns:repeat(6,1fr);grid-auto-rows:110px;gap:.8rem}
+  .gallery-item{grid-column:span 3;grid-row:span 2;transform:none !important;--rot:0deg}
+  .gallery-item.visible{transform:none !important}
+  .g1,.g4,.g8,.g11,.g14,.g17,.g20,.g23{grid-column:span 6;grid-row:span 3}
+}
+
+/* ================== POEM PAGE (FULL) ================== */
+.poem-overlay{
+  position:fixed;inset:0;z-index:950;
+  background:rgba(10,10,10,.97);backdrop-filter:blur(20px);
+  display:none;align-items:flex-start;justify-content:center;
+  overflow-y:auto;padding:4rem 1rem;
+  animation:fadeIn .6s ease;
+}
+.poem-overlay.active{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.poem-modal{
+  max-width:1200px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;
+  align-items:flex-start;position:relative;
+  animation:modalIn 1s cubic-bezier(.2,.8,.2,1);
+  padding-bottom:3rem;
+}
+@keyframes modalIn{from{opacity:0;transform:translateY(40px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+.poem-modal .photo-frame{
+  position:sticky;top:4rem;
+  aspect-ratio:3/4;overflow:hidden;
+  border:1px solid rgba(212,175,55,.3);
+  box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 60px rgba(212,175,55,.1);
+}
+.poem-modal .photo-frame img{width:100%;height:100%;object-fit:cover}
+.poem-modal .photo-frame::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(45,8,18,.5));
+  pointer-events:none;
+}
+
+.poem-content{padding:1rem 0}
+.poem-content .poem-number{
+  font-size:.75rem;letter-spacing:.5em;color:var(--champagne);
+  text-transform:uppercase;margin-bottom:1rem;
+}
+.poem-content h2{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(2rem,3.5vw,3.2rem);color:var(--ivory);
+  margin-bottom:.5rem;line-height:1.2;
+}
+.poem-content h2 span{color:var(--champagne)}
+.poem-content .poem-subtitle{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:var(--dustyrose);font-size:1.1rem;margin-bottom:1rem;
+}
+.poem-content .poem-intro{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:var(--lavender-soft);margin:1.5rem 0 2.5rem;font-size:1.1rem;
+  line-height:1.7;padding-left:1.5rem;
+  border-left:2px solid rgba(212,175,55,.3);
+}
+.poem-content .poem-text{
+  font-family:'Cormorant Garamond',serif;font-size:1.25rem;
+  line-height:2.1;color:var(--ivory);
+}
+.poem-content .poem-text p{
+  margin-bottom:.6rem;opacity:0;
+  animation:lineReveal .8s ease forwards;
+}
+.poem-content .poem-text p em{color:var(--champagne);font-style:italic}
+@keyframes lineReveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.poem-content .signature{
+  margin-top:3rem;padding-top:1.5rem;
+  border-top:1px solid rgba(212,175,55,.3);
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:var(--champagne);font-size:1.1rem;letter-spacing:.15em;
+}
+
+.poem-nav{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:2.5rem;gap:1rem;flex-wrap:wrap;
+}
+.poem-nav button{
+  background:transparent;border:1px solid rgba(212,175,55,.4);
+  color:var(--champagne);padding:.8rem 1.8rem;cursor:pointer;
+  font-family:'Cormorant Garamond',serif;font-size:.9rem;letter-spacing:.25em;
+  text-transform:uppercase;transition:all .3s;
+}
+.poem-nav button:hover{background:var(--champagne);color:var(--burgundy-deep)}
+.poem-nav .back-btn{color:var(--dustyrose);border-color:rgba(201,160,160,.4)}
+.poem-nav .back-btn:hover{background:var(--dustyrose);color:var(--burgundy-deep)}
+
+.close-poem{
+  position:fixed;top:2rem;right:2rem;width:50px;height:50px;
+  background:rgba(74,14,31,.6);border:1px solid var(--champagne);
+  color:var(--champagne);font-size:1.5rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .4s;z-index:960;backdrop-filter:blur(10px);
+}
+.close-poem:hover{background:var(--champagne);color:var(--burgundy-deep);transform:rotate(90deg)}
+
+@media(max-width:900px){
+  .poem-modal{grid-template-columns:1fr;gap:2.5rem}
+  .poem-modal .photo-frame{position:relative;top:0;max-width:400px;margin:0 auto}
+}
+
+/* ================== POETRY LIBRARY ================== */
+.library-wrap{padding:4rem 2rem 6rem;background:var(--midnight)}
+.library-controls{
+  max-width:1200px;margin:0 auto 3rem;display:flex;flex-wrap:wrap;
+  gap:1rem;align-items:center;justify-content:center;
+}
+.library-controls input{
+  background:transparent;border:1px solid rgba(212,175,55,.3);
+  color:var(--ivory);padding:.8rem 1.5rem;font-family:'Cormorant Garamond',serif;
+  font-size:1rem;letter-spacing:.1em;min-width:300px;
+  transition:border-color .3s;
+}
+.library-controls input:focus{outline:none;border-color:var(--champagne)}
+.library-controls input::placeholder{color:rgba(245,239,230,.4);font-style:italic}
+
+.filter-chips{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;max-width:1200px;margin:0 auto 2rem}
+.chip{
+  background:transparent;border:1px solid rgba(212,175,55,.3);
+  color:var(--ivory);padding:.5rem 1.2rem;cursor:pointer;
+  font-family:'Cormorant Garamond',serif;font-size:.85rem;letter-spacing:.15em;
+  text-transform:uppercase;transition:all .3s;
+}
+.chip:hover,.chip.active{background:var(--champagne);color:var(--burgundy-deep);border-color:var(--champagne)}
+
+.bookshelf{
+  max-width:1300px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:2rem;
+}
+.book{
+  position:relative;aspect-ratio:3/4;cursor:pointer;
+  background:linear-gradient(135deg,var(--burgundy),var(--burgundy-deep));
+  border:1px solid rgba(212,175,55,.3);
+  padding:2rem 1.5rem;display:flex;flex-direction:column;justify-content:space-between;
+  overflow:hidden;transition:all .6s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  opacity:0;transform:translateY(30px);
+}
+.book.visible{opacity:1;transform:translateY(0)}
+.book::before{
+  content:'';position:absolute;top:0;bottom:0;left:12px;width:1px;
+  background:rgba(212,175,55,.3);
+}
+.book::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 70% 30%,rgba(212,175,55,.1),transparent 60%);
+  pointer-events:none;
+}
+.book:hover{transform:translateY(-10px) rotate(-1deg);box-shadow:0 30px 60px rgba(212,175,55,.25)}
+.book .book-num{
+  font-size:.7rem;letter-spacing:.4em;color:var(--champagne);
+  text-transform:uppercase;position:relative;z-index:2;
+}
+.book .book-title{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:1.35rem;color:var(--ivory);line-height:1.3;
+  position:relative;z-index:2;
+}
+.book .book-excerpt{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:.88rem;color:var(--dustyrose);line-height:1.5;
+  position:relative;z-index:2;
+}
+.book .open-label{
+  font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--champagne);position:relative;z-index:2;
+  opacity:0;transform:translateY(10px);transition:all .4s;
+}
+.book:hover .open-label{opacity:1;transform:translateY(0)}
+
+.book.b2{background:linear-gradient(135deg,#3a0a18,#1a0510)}
+.book.b3{background:linear-gradient(135deg,#2a1a2e,#140a1a)}
+.book.b4{background:linear-gradient(135deg,#4a1a2a,#200a15)}
+.book.b5{background:linear-gradient(135deg,#3a1a1a,#1a0a0a)}
+.book.b6{background:linear-gradient(135deg,#2a1520,#100810)}
+
+/* ================== BEAUTY / DETAILS ================== */
+.beauty-wrap{padding:4rem 0 6rem;background:var(--midnight)}
+.feature-card{
+  max-width:1300px;margin:0 auto 6rem;padding:0 2rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
+  opacity:0;transform:translateY(40px);transition:all 1s ease;
+}
+.feature-card.visible{opacity:1;transform:translateY(0)}
+.feature-card.reverse{direction:rtl}
+.feature-card.reverse > *{direction:ltr}
+.feature-visual{
+  position:relative;aspect-ratio:3/4;overflow:hidden;
+  border:1px solid rgba(212,175,55,.3);
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+.feature-visual img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s}
+.feature-card:hover .feature-visual img{transform:scale(1.05)}
+.feature-visual::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(45,8,18,.6));
+}
+.feature-text .label{
+  font-size:.75rem;letter-spacing:.5em;text-transform:uppercase;
+  color:var(--champagne);margin-bottom:1rem;
+}
+.feature-text h3{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(2rem,3.5vw,3rem);color:var(--ivory);
+  margin-bottom:1.5rem;line-height:1.2;
+}
+.feature-text .poem{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.15rem;line-height:2;color:var(--ivory);opacity:.9;
+}
+.feature-text .poem p{margin-bottom:.4rem}
+.feature-text .signature{
+  margin-top:2rem;color:var(--champagne);
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  letter-spacing:.1em;
+}
+
+@media(max-width:900px){
+  .feature-card{grid-template-columns:1fr;gap:2rem}
+  .feature-card.reverse{direction:ltr}
+}
+
+/* ================== STORY TIMELINE ================== */
+.story-wrap{padding:4rem 2rem 6rem;background:var(--midnight)}
+.timeline{
+  max-width:900px;margin:0 auto;position:relative;
+  padding:2rem 0;
+}
+.timeline::before{
+  content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,transparent,var(--champagne),transparent);
+  transform:translateX(-50%);
+}
+.tl-item{
+  position:relative;width:50%;padding:2rem 3rem;margin-bottom:2rem;
+  opacity:0;transform:translateY(30px);
+  transition:all .8s ease;
+}
+.tl-item.visible{opacity:1;transform:translateY(0)}
+.tl-item:nth-child(odd){margin-left:0;text-align:right}
+.tl-item:nth-child(even){margin-left:50%;text-align:left}
+.tl-item::before{
+  content:'';position:absolute;top:2.5rem;width:14px;height:14px;
+  background:var(--champagne);border-radius:50%;
+  box-shadow:0 0 0 4px var(--midnight),0 0 0 5px var(--champagne);
+}
+.tl-item:nth-child(odd)::before{right:-7px}
+.tl-item:nth-child(even)::before{left:-7px}
+.tl-item .year{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:1.8rem;color:var(--champagne);margin-bottom:.5rem;
+}
+.tl-item h4{
+  font-family:'Playfair Display',serif;font-size:1.3rem;
+  color:var(--ivory);margin-bottom:.8rem;
+}
+.tl-item p{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.05rem;line-height:1.7;color:var(--ivory);opacity:.85;
+}
+.tl-item img{
+  width:100%;max-width:280px;margin-top:1rem;
+  border:1px solid rgba(212,175,55,.3);
+  box-shadow:0 10px 30px rgba(0,0,0,.5);
+}
+
+@media(max-width:700px){
+  .timeline::before{left:20px}
+  .tl-item{width:100%;padding:1.5rem 1.5rem 1.5rem 3rem;text-align:left !important;margin-left:0 !important}
+  .tl-item::before{left:13px !important;right:auto !important}
+}
+
+/* ================== LETTER ================== */
+.letter-wrap{
+  min-height:100vh;padding:8rem 2rem 6rem;
+  background:
+    radial-gradient(ellipse at center,var(--burgundy-deep) 0%,var(--midnight) 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.letter-paper{
+  max-width:780px;width:100%;padding:4rem 3rem;
+  background:linear-gradient(180deg,var(--ivory-warm),var(--ivory));
+  color:var(--burgundy-deep);position:relative;
+  box-shadow:0 40px 100px rgba(0,0,0,.7),0 0 80px rgba(212,175,55,.15);
+  border:1px solid rgba(212,175,55,.4);
+}
+.letter-paper::before,.letter-paper::after{
+  content:'';position:absolute;width:60px;height:60px;
+  border:1px solid var(--champagne);
+}
+.letter-paper::before{top:20px;left:20px;border-right:none;border-bottom:none}
+.letter-paper::after{bottom:20px;right:20px;border-left:none;border-top:none}
+
+.letter-paper .salutation{
+  font-family:'Dancing Script',cursive;font-size:2.5rem;
+  color:var(--burgundy);margin-bottom:2rem;
+}
+.letter-paper p{
+  font-family:'Cormorant Garamond',serif;font-size:1.25rem;
+  line-height:2;color:var(--burgundy-deep);margin-bottom:1.5rem;
+  opacity:0;transform:translateY(15px);
+  transition:all 1s ease;
+}
+.letter-paper p.revealed{opacity:1;transform:translateY(0)}
+.letter-paper .signoff{
+  margin-top:3rem;font-family:'Dancing Script',cursive;
+  font-size:2rem;color:var(--burgundy);text-align:right;
+}
+.letter-paper .signoff span{display:block;font-size:1.4rem;margin-top:.5rem}
+
+@media(max-width:700px){
+  .letter-paper{padding:3rem 2rem}
+}
+
+/* ================== FOOTER ================== */
+footer.site-footer{
+  background:var(--burgundy-deep);padding:3rem 2rem 2rem;text-align:center;
+  border-top:1px solid rgba(212,175,55,.2);position:relative;
+}
+footer .line{
+  width:120px;height:1px;margin:0 auto 1.5rem;
+  background:linear-gradient(90deg,transparent,var(--champagne),transparent);
+}
+footer .with-love{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:1.3rem;color:var(--ivory);letter-spacing:.1em;
+}
+footer .with-love .heart{
+  display:inline-block;color:var(--champagne);
+  animation:heartbeat 2s ease-in-out infinite;
+}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  25%{transform:scale(1.2)}
+  50%{transform:scale(1)}
+  75%{transform:scale(1.15)}
+}
+footer .written-by{
+  margin-top:1rem;font-family:'Cormorant Garamond',serif;
+  font-style:italic;color:var(--champagne);font-size:.95rem;
+  letter-spacing:.15em;
+}
+
+/* ================== REVEAL ON SCROLL ================== */
+.reveal{opacity:0;transform:translateY(40px);transition:all 1s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="monogram">S</div>
+  <div class="sub">A Universe Written in Verses</div>
+  <div class="line"></div>
+</div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ============ NAVIGATION ============ -->
+<nav class="topnav" id="topnav">
+  <div class="brand" onclick="goTo('home')">SEHAR <span>— a universe</span></div>
+  <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  <ul id="navmenu">
+    <li><a href="#" onclick="goTo('home');return false" data-page="home">Home</a></li>
+    <li><a href="#" onclick="goTo('gallery');return false" data-page="gallery">Her Gallery</a></li>
+    <li><a href="#" onclick="goTo('library');return false" data-page="library">Her Poetry</a></li>
+    <li><a href="#" onclick="goTo('beauty');return false" data-page="beauty">Her Beauty</a></li>
+    <li><a href="#" onclick="goTo('story');return false" data-page="story">Her Story</a></li>
+    <li><a href="#" onclick="goTo('letter');return false" data-page="letter">A Letter</a></li>
+  </ul>
+</nav>
+
+<!-- ============ PETALS & DUST ============ -->
+<div class="petals" id="petals"></div>
+<div class="dust" id="dust"></div>
+
+<!-- ============ HOME / ENTRANCE ============ -->
+<section class="page active" id="home">
+  <div class="entrance-frame">
+    <div class="entrance-photo">
+      <img src="Sehar/Sehar1.jpg" alt="Sehar Eman Shahid"/>
+    </div>
+    <div class="entrance-eyebrow">A Literary Universe</div>
+    <h1 class="entrance-title">SEHAR</h1>
+    <p class="entrance-tagline">
+      Not every beautiful story is written in books. Some are written in the eyes, the smile, the silence, and the existence of someone.
+    </p>
+    <p class="entrance-unique">
+      "Some people are born into this world.<br/>Some arrive and give the world a reason to become poetry."
+    </p>
+    <p class="entrance-welcome">Welcome to a universe where every little detail of you has its own poetry.</p>
+    <button class="enter-btn" onclick="enterUniverse()">Enter Her Universe</button>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="page" id="gallery">
+  <div class="section-hero">
+    <div>
+      <div class="eyebrow">Chapter One</div>
+      <h1>The Gallery of <span>Sehar</span></h1>
+      <div class="divider"></div>
+      <p>Twenty-five moments. Forty poems. A universe where every photograph is a painting, and every painting deserves its own verse.</p>
+    </div>
+  </div>
+  <div class="gallery-wrap">
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</section>
+
+<!-- ============ POETRY LIBRARY ============ -->
+<section class="page" id="library">
+  <div class="section-hero">
+    <div>
+      <div class="eyebrow">Chapter Two</div>
+      <h1>The Poetry <span>Library</span></h1>
+      <div class="divider"></div>
+      <p>A bookshelf of forty handwritten verses. Each one a small monument to a detail the world usually lets pass unnoticed.</p>
+    </div>
+  </div>
+  <div class="library-wrap">
+    <div class="library-controls">
+      <input type="text" id="searchInput" placeholder="Search a poem by title..." oninput="filterBooks()"/>
+    </div>
+    <div class="filter-chips" id="filterChips">
+      <button class="chip active" data-cat="all" onclick="filterCat('all',this)">All</button>
+      <button class="chip" data-cat="Her Eyes" onclick="filterCat('Her Eyes',this)">Her Eyes</button>
+      <button class="chip" data-cat="Her Hair" onclick="filterCat('Her Hair',this)">Her Hair</button>
+      <button class="chip" data-cat="Her Smile" onclick="filterCat('Her Smile',this)">Her Smile</button>
+      <button class="chip" data-cat="Her Face" onclick="filterCat('Her Face',this)">Her Face</button>
+      <button class="chip" data-cat="Her Voice" onclick="filterCat('Her Voice',this)">Her Voice</button>
+      <button class="chip" data-cat="Her Expressions" onclick="filterCat('Her Expressions',this)">Her Expressions</button>
+      <button class="chip" data-cat="Her Elegance" onclick="filterCat('Her Elegance',this)">Her Elegance</button>
+      <button class="chip" data-cat="Her Presence" onclick="filterCat('Her Presence',this)">Her Presence</button>
+      <button class="chip" data-cat="Her Story" onclick="filterCat('Her Story',this)">Her Story</button>
+    </div>
+    <div class="bookshelf" id="bookshelf" style="margin-top:3rem"></div>
+  </div>
+</section>
+
+<!-- ============ BEAUTY / DETAILS ============ -->
+<section class="page" id="beauty">
+  <div class="section-hero">
+    <div>
+      <div class="eyebrow">Chapter Three</div>
+      <h1>The Details of <span>Her</span></h1>
+      <div class="divider"></div>
+      <p>Beauty is not a single thing. It is a thousand small details, each one deserving its own quiet poem.</p>
+    </div>
+  </div>
+  <div class="beauty-wrap" id="beautyWrap"></div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="page" id="story">
+  <div class="section-hero">
+    <div>
+      <div class="eyebrow">Chapter Four</div>
+      <h1>Her <span>Story</span></h1>
+      <div class="divider"></div>
+      <p>A life written in small, luminous chapters — from a village near Wah Cantt to the universe she carries inside her.</p>
+    </div>
+  </div>
+  <div class="story-wrap">
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- ============ LETTER ============ -->
+<section class="page" id="letter">
+  <div class="letter-wrap">
+    <div class="letter-paper" id="letterPaper">
+      <div class="salutation">Dear Sehar,</div>
+      <p>I don't know whether the world has ever told you how beautiful you are in enough words. So I decided to create a world where every little thing about you could have its own place, its own story, and its own poetry.</p>
+      <p>These pages are not an attempt to define your beauty. They are simply my attempt to appreciate what words have never been able to explain.</p>
+      <p>Every photograph is a memory. Every poem is an observation. Every line is a small tribute to you.</p>
+      <p>If one day you read these and feel, even for a moment, that someone truly saw you — then this universe was worth building.</p>
+      <div class="signoff">
+        With love, for Sehar.
+        <span>— Eman Zahid</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POEM MODAL ============ -->
+<div class="poem-overlay" id="poemOverlay">
+  <button class="close-poem" onclick="closePoem()">×</button>
+  <div class="poem-modal" id="poemModal"></div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="line"></div>
+  <div class="with-love">With Love, For Sehar <span class="heart">♡</span></div>
+  <div class="written-by">Written by Eman Zahid</div>
+</footer>
+
+<script>
+/* ================== ALL 40 POEMS DATA ================== */
+const poems = [
+  {
+    num:1, title:'If Mir Had Witnessed Her', subtitle:'', category:'Her Presence',
+    intro:'Had the greatest poet of Urdu seen her, his seven volumes would have become eight — and the eighth would have been named after her.',
+    text:[
+      'Had Mir been granted one more evening beneath the sky,',
+      'He would have forgotten every ghazal he had ever written.',
+      'For centuries, he searched for beauty in the language of longing,',
+      'Yet one glimpse of her would have given his words a new meaning.',
+      '',
+      'Perhaps he would have called his seventh volume by her name,',
+      'Not because the world lacked beautiful women,',
+      'But because some faces are not merely seen;',
+      'They become the reason a poet learns to see.',
+      '',
+      'Her arrival would have unsettled the dictionaries of romance,',
+      'Her smile would have embarrassed the finest metaphors,',
+      'And her eyes would have made even the moon understand',
+      'That being beautiful does not necessarily mean being admired.',
+      '',
+      'If Mir had witnessed her, he would not have written another poem.',
+      'He would have spent his remaining years trying to describe her,',
+      'And when death finally asked what remained unfinished,',
+      'He would have answered: <em>The beauty I saw in Sehar.</em>'
+    ]
+  },
+  {
+    num:2, title:'The Geography of Her Eyes', subtitle:'', category:'Her Eyes',
+    intro:'There are places one visits and forgets. Hers are destinations where even a restless heart wishes to settle.',
+    text:[
+      'There are places on this earth that one visits and forgets,',
+      'There are landscapes that remain beautiful only in photographs,',
+      'And then there are her eyes,',
+      'A destination where even a restless heart wishes to settle.',
+      '',
+      'I have travelled through ordinary days without stopping,',
+      'Crossed countless moments without looking twice,',
+      'But her eyes possess a strange authority over my attention;',
+      'They turn an ordinary second into an unforgettable lifetime.',
+      '',
+      'There is a universe hidden behind those lashes,',
+      'A thousand unspoken stories resting beneath their silence,',
+      'And something in their depth makes every other view',
+      'Feel like an unfinished painting.',
+      '',
+      'Even when anger visits her delicate expression,',
+      'Her eyes become an entirely different kind of spectacle,',
+      'As though two tiny storms have gathered behind the glass',
+      'Of the most beautiful windows ever made.',
+      '',
+      'If heaven has a language for its most peaceful corners,',
+      'Perhaps it borrowed that language from her eyes.'
+    ]
+  },
+  {
+    num:3, title:'A Face That Defeated Language', subtitle:'', category:'Her Face',
+    intro:'Language has its limits. Her face lives beyond them.',
+    text:[
+      'I have searched for adjectives in forgotten books,',
+      'Borrowed metaphors from poets who lived before my time,',
+      'Consulted the moon, the stars, and the morning light,',
+      'Yet none has offered an adequate description of her face.',
+      '',
+      'Her forehead carries the elegance of a quiet morning,',
+      'Her nose possesses a grace no sculptor could reproduce,',
+      'Her cheeks seem to have preserved the softness of spring,',
+      'And her lips hold a beauty that makes silence worthwhile.',
+      '',
+      'Her hair falls like a beautiful thought across the shoulders,',
+      'Each strand adding another detail to an already perfect portrait,',
+      'While her smile makes the entire arrangement of the universe',
+      'Seem as though it was designed for one particular moment.',
+      '',
+      'I could write a thousand pages about her appearance,',
+      'And still leave the most beautiful details untouched.',
+      'For the greatest tragedy of language is this:',
+      'It can describe her existence, but never its full beauty.'
+    ]
+  },
+  {
+    num:4, title:'The Voice That Makes Time Listen', subtitle:'', category:'Her Voice',
+    intro:'Some voices travel through the air and disappear. Hers remains — a melody that does not require music.',
+    text:[
+      'Some voices travel through the air and disappear,',
+      'Some remain in memory for a few passing hours,',
+      'But hers has the tenderness of something unforgettable,',
+      'A melody that does not require music to become beautiful.',
+      '',
+      'She speaks, and the sharpness of the world becomes softer,',
+      'Her words arrive without demanding anyone\'s attention,',
+      'Yet somehow every surrounding conversation loses importance',
+      'When her gentle voice enters the atmosphere.',
+      '',
+      'There is no need for grand speeches or elaborate expressions,',
+      'Her ordinary sentences carry their own quiet elegance,',
+      'And even the simplest question, spoken by her,',
+      'Can become a memory worth preserving.',
+      '',
+      'I wonder whether the wind becomes jealous when she speaks,',
+      'For it travels everywhere yet possesses no such sweetness.',
+      'If silence ever learns to admire something,',
+      'It must be the sound of Sehar speaking.'
+    ]
+  },
+  {
+    num:5, title:'Born Where the Morning Remembers Her', subtitle:'', category:'Her Story',
+    intro:'On the nineteenth of March, 2004, a morning arrived carrying a name the family had not yet chosen.',
+    text:[
+      'On the nineteenth of March, in the year 2004,',
+      'A morning arrived carrying a name the family had not yet chosen.',
+      'Pind Bahadur Khan, near Bahtar and Wah Cantt,',
+      'Became the first chapter of a story larger than its village.',
+      '',
+      'Perhaps the sky was unaware of what it was witnessing,',
+      'Perhaps the fields continued their ordinary conversations,',
+      'Perhaps nobody imagined that this little arrival',
+      'Would one day become someone\'s favourite subject of poetry.',
+      '',
+      'She was first imagined as Eman Shahid,',
+      'But her grandfather gave the world another beautiful beginning:',
+      'Sehar Eman Shahid, a name with the softness of dawn,',
+      'And the promise of a morning that refuses to disappear.',
+      '',
+      'Some people are born into a place and leave it behind;',
+      'Some carry their birthplace within every part of themselves.',
+      'And somewhere between that village and the passing years,',
+      'A beautiful story learned how to call itself Sehar.'
+    ]
+  },
+  {
+    num:6, title:'The Daughter Her Father Called a Blessing', subtitle:'', category:'Her Story',
+    intro:'Before the world admired her face, there was a father who already considered her a blessing.',
+    text:[
+      'Before the world learned to admire her face,',
+      'There was a father who already considered her a blessing.',
+      'She was his first meeting after returning home,',
+      'The familiar happiness waiting beyond the doorway.',
+      '',
+      'He took her wherever his journeys led him,',
+      'As though every road became better with her beside him.',
+      'She would postpone her dinner until he returned,',
+      'Because a table felt incomplete without his arrival.',
+      '',
+      'There is something extraordinary about a father\'s love,',
+      'When his daughter becomes the softness of his entire world.',
+      'He did not merely raise a little girl in his home;',
+      'He treasured a blessing that happened to call him Baba.',
+      '',
+      'And if her beauty ever needs an explanation,',
+      'Look at the tenderness with which she was raised.',
+      'Some flowers grow beneath sunlight,',
+      'But she grew beneath the protection of a father\'s prayers.'
+    ]
+  },
+  {
+    num:7, title:'The Eldest Daughter\'s Crown', subtitle:'', category:'Her Story',
+    intro:'She was never merely the eldest daughter. She was an entire household learning to breathe through her.',
+    text:[
+      'She was never merely the eldest daughter,',
+      'She was an entire household learning to breathe through her.',
+      'Four siblings shared the warmth of one home,',
+      'Yet she carried responsibilities beyond her years.',
+      '',
+      'She learned to notice what others overlooked,',
+      'To understand a silence before it became a complaint,',
+      'To offer comfort without waiting to be requested,',
+      'And to turn responsibility into an expression of affection.',
+      '',
+      'Her intelligence was not simply measured by examinations,',
+      'It appeared in the way she understood her family,',
+      'In the wisdom of her decisions and the patience of her hands,',
+      'In the countless little things nobody remembered to thank her for.',
+      '',
+      'There are crowns made of gold and precious stones,',
+      'And there are crowns earned through countless acts of love.',
+      'Hers was invisible, yet more magnificent than both:',
+      'The crown of being the daughter everyone could depend upon.'
+    ]
+  },
+  {
+    num:8, title:'A Mother in the Shape of a Sister', subtitle:'', category:'Her Story',
+    intro:'There is a younger brother who perhaps cannot explain how much of his childhood was protected by her affection.',
+    text:[
+      'There is a younger brother who perhaps cannot explain',
+      'How much of his childhood was protected by her affection.',
+      'She became his shelter before he understood the meaning of shelter,',
+      'And his comfort before he knew how to ask for it.',
+      '',
+      'She prepared his food with the patience of a mother,',
+      'Watched over him with the attention of a guardian,',
+      'And remained awake when illness interrupted his peaceful nights,',
+      'As though his discomfort had become her own.',
+      '',
+      'She was his sister by the language of relationships,',
+      'But something much deeper by the language of devotion.',
+      'Her hands carried the tenderness of motherhood,',
+      'And her heart knew no distinction between caring and loving.',
+      '',
+      'One day, he may grow old enough to understand',
+      'How many sacrifices were hidden inside ordinary moments.',
+      'And when he remembers who made childhood feel safe,',
+      'Her name will be written there before every other name.'
+    ]
+  },
+  {
+    num:9, title:'The Girl Every Relative Claimed as Their Favourite', subtitle:'', category:'Her Story',
+    intro:'Khala had her reasons, Phupho had her own, Chachi discovered a thousand things to adore.',
+    text:[
+      'Khala had her reasons, Phupho had her own,',
+      'Chachi discovered a thousand things to adore,',
+      'And her beloved Chachu found in her',
+      'A companion who could turn an ordinary day into an occasion.',
+      '',
+      'She was never short of affection in those family gatherings,',
+      'Nor was she ever an unnoticed presence in the room.',
+      'Her cousins welcomed her with their familiar laughter,',
+      'As though happiness had arrived wearing a familiar face.',
+      '',
+      'There are people who need years to become unforgettable,',
+      'But she entered hearts without announcing her arrival.',
+      'Every relative had a different story about her,',
+      'And somehow every story ended with the same affection.',
+      '',
+      'If being loved by many is a form of beauty,',
+      'Then she has possessed that beauty since childhood.',
+      'She was not simply a favourite in one person\'s memory;',
+      'She became a favourite chapter in an entire family.'
+    ]
+  },
+  {
+    num:10, title:'The Classroom\'s Unwritten Rule', subtitle:'', category:'Her Story',
+    intro:'There was a classroom where rules were made for everyone — and then there was the girl who somehow escaped their severity.',
+    text:[
+      'There was a classroom where rules were made for everyone,',
+      'And then there was the girl who somehow escaped their severity.',
+      'When the entire class faced a teacher\'s displeasure,',
+      'Her name seemed to arrive with an automatic exemption.',
+      '',
+      'She was intelligent enough to earn admiration,',
+      'Yet mischievous enough to keep the classroom interesting.',
+      'Even her male teachers were not safe from her teasing,',
+      'For she had mastered the art of being respectfully troublesome.',
+      '',
+      'Her academy teacher trusted her with responsibilities,',
+      'Fed her affection as though she were her own daughter,',
+      'And found in her a student worth more than good marks,',
+      'A young girl who brought warmth into the classroom.',
+      '',
+      'Some students are remembered for their academic achievements,',
+      'Others for their behaviour or their remarkable discipline.',
+      'But she was remembered for something rarer:',
+      'She made every place she studied feel a little more alive.'
+    ]
+  },
+  {
+    num:11, title:'The Politeness That Anger Cannot Erase', subtitle:'', category:'Her Expressions',
+    intro:'Not every beautiful person possesses a beautiful temperament. She carries softness even through her displeasure.',
+    text:[
+      'Not every beautiful person possesses a beautiful temperament,',
+      'But she carries a softness even through her displeasure.',
+      'Her anger does not completely change the music of her voice,',
+      'Nor does it steal the gentleness from her manner.',
+      '',
+      'The difference appears in those expressive eyes,',
+      'Where tiny changes reveal the emotions she tries to contain.',
+      'Her iris seems to tell a story before her words begin,',
+      'And her face becomes a portrait of unspoken feelings.',
+      '',
+      'She does not need to raise her voice to be understood,',
+      'For even her irritation carries a certain grace.',
+      'There is something strangely charming about a heart',
+      'That can remain polite while refusing to hide its emotions.',
+      '',
+      'Perhaps true elegance is not the absence of anger,',
+      'But the ability to remain gentle while experiencing it.',
+      'And she makes that difficult art look effortless.'
+    ]
+  },
+  {
+    num:12, title:'The Sweetest Weather of Her Mood Swings', subtitle:'', category:'Her Expressions',
+    intro:'Her moods are like weather over an unfamiliar landscape — a little sunshine, a sudden cloud, an unexpected storm.',
+    text:[
+      'Her moods are like weather over an unfamiliar landscape,',
+      'A little sunshine, a sudden cloud, an unexpected storm.',
+      'One moment the world is perfectly ordinary,',
+      'The next, she has invented an entirely new atmosphere.',
+      '',
+      'Yet there is a secret behind this changing weather:',
+      'She reveals it most freely among those she trusts.',
+      'Her playful complaints become invitations to laughter,',
+      'And her sudden expressions turn ordinary moments into memories.',
+      '',
+      'She can be adorably unreasonable,',
+      'Beautifully dramatic, unexpectedly quiet,',
+      'And so irresistibly cute in her changing moods',
+      'That even a complaint becomes difficult to take seriously.',
+      '',
+      'The world may prefer predictable seasons,',
+      'But those close to her understand the privilege of variation.',
+      'After all, even the sky would be monotonous',
+      'If it never changed its colours.'
+    ]
+  },
+  {
+    num:13, title:'A Beauty That Does Not Announce Itself', subtitle:'', category:'Her Elegance',
+    intro:'She does not need to compete with the morning, nor borrow elegance from expensive ornaments.',
+    text:[
+      'She does not need to compete with the morning,',
+      'Nor borrow elegance from expensive ornaments.',
+      'There is an effortless distinction in her appearance,',
+      'A kind of beauty that does not ask permission to exist.',
+      '',
+      'Her presence gives ordinary surroundings a different character,',
+      'As though the walls themselves have become more graceful.',
+      'She can enter a room without making an announcement,',
+      'Yet somehow the atmosphere remembers that she was there.',
+      '',
+      'The finest paintings require a careful arrangement of colours,',
+      'But nature seems to have understood her composition instinctively.',
+      'Every feature finds its place without effort,',
+      'And every expression adds something new to the portrait.',
+      '',
+      'If beauty were a language, she would be its finest literature,',
+      'If elegance were music, she would be its quietest symphony.',
+      'She is not beautiful because someone says so;',
+      'She is beautiful in a way that makes saying so unavoidable.'
+    ]
+  },
+  {
+    num:14, title:'A Childhood Too Precious for Photographs', subtitle:'', category:'Her Story',
+    intro:'Some childhoods are preserved in albums. Hers lives in the memories of those who watched her grow.',
+    text:[
+      'Some childhoods are preserved in albums,',
+      'Some survive only through stories repeated at family gatherings.',
+      'Hers lives in the memories of those who watched her grow,',
+      'A collection of moments no camera could completely capture.',
+      '',
+      'She was once a little girl who needed extra care,',
+      'A delicate beginning that gradually found its strength.',
+      'The child who was protected by everyone\'s affection',
+      'Eventually became someone others depended upon.',
+      '',
+      'Her early years were surrounded by familiar faces,',
+      'By the warmth of relatives and the security of home,',
+      'By a father\'s hand and the laughter of cousins,',
+      'By the little privileges of being the beloved eldest daughter.',
+      '',
+      'Time has changed her appearance and strengthened her steps,',
+      'But somewhere inside her lives that little girl,',
+      'Still deserving every kindness she once received,',
+      'Still worthy of a world that treats her gently.'
+    ]
+  },
+  {
+    num:15, title:'The Inheritance of Love and Loyalty', subtitle:'', category:'Her Story',
+    intro:'She was raised on stories that carried more than history — stories of Hazrat Ali and Hazrat Hussain.',
+    text:[
+      'She was raised on stories that carried more than history,',
+      'Stories of Hazrat Ali and Hazrat Hussain,',
+      'Of courage that did not surrender to injustice,',
+      'And loyalty that remained beautiful even through suffering.',
+      '',
+      'Within an Ahl-e-Tashi household, she encountered narratives',
+      'Where devotion was never an ordinary word.',
+      'Love was taught through remembrance,',
+      'And faithfulness was understood through sacrifice and conviction.',
+      '',
+      'Perhaps this is why affection sits so naturally within her,',
+      'Why loyalty feels more like a language than a promise.',
+      'The stories she heard while growing up',
+      'Became quiet influences upon the woman she would become.',
+      '',
+      'There are inheritances that cannot be placed inside a chest,',
+      'Nor measured through wealth or worldly possessions.',
+      'She received something far more enduring:',
+      'A childhood surrounded by stories of courage, devotion and love.'
+    ]
+  },
+  {
+    num:16, title:'The Smile That Rewrites Ordinary Days', subtitle:'', category:'Her Smile',
+    intro:'A smile can be a small movement of the lips. Hers possesses an unusual talent — it makes an ordinary day worth remembering.',
+    text:[
+      'A smile can be a small movement of the lips,',
+      'A passing expression that disappears within seconds.',
+      'But hers possesses an unusual talent:',
+      'It makes an ordinary day feel worth remembering.',
+      '',
+      'Perhaps the sun does not rise differently when she smiles,',
+      'Yet the world appears to have received additional light.',
+      'The simplest conversation becomes a pleasant memory,',
+      'And the heaviest atmosphere begins to lose its weight.',
+      '',
+      'There is a certain innocence in her happiness,',
+      'A softness that cannot be manufactured or rehearsed.',
+      'It belongs to her alone, like a signature',
+      'That no other person could ever reproduce.',
+      '',
+      'If someone ever asks where happiness can be found,',
+      'I would not point towards a distant destination.',
+      'I would simply remember the expression on her face',
+      'When she forgets the world and smiles.'
+    ]
+  },
+  {
+    num:17, title:'The Art of Being Everyone\'s Favourite', subtitle:'', category:'Her Presence',
+    intro:'She has a strange relationship with unfamiliar places — they rarely remain unfamiliar for very long.',
+    text:[
+      'She has a strange relationship with unfamiliar places:',
+      'They rarely remain unfamiliar for very long.',
+      'She enters as a visitor, becomes a familiar presence,',
+      'And eventually leaves behind people who wish she would stay.',
+      '',
+      'It is not merely her appearance that earns affection,',
+      'Nor the intelligence that people notice first.',
+      'There is something in her manner of belonging',
+      'That makes others feel they have known her forever.',
+      '',
+      'From classrooms to family gatherings,',
+      'From childhood friendships to unfamiliar conversations,',
+      'She has repeatedly demonstrated one beautiful truth:',
+      'Some personalities are naturally easy to love.',
+      '',
+      'The world is full of people who seek attention,',
+      'But she seems to collect affection without trying.',
+      'Perhaps that is the greatest charm of all:',
+      'To become someone\'s favourite without ever asking.'
+    ]
+  },
+  {
+    num:18, title:'The Poetry of Her Hair', subtitle:'', category:'Her Hair',
+    intro:'There is a certain freedom in the way her hair falls — like dark verses escaping the boundaries of a page.',
+    text:[
+      'There is a certain freedom in the way her hair falls,',
+      'Like dark verses escaping the boundaries of a page.',
+      'Every movement gives her appearance another dimension,',
+      'Every strand seems to understand the elegance of its place.',
+      '',
+      'I imagine the evening wind slowing its journey,',
+      'Just to witness the softness of those passing waves.',
+      'Even the moon might hesitate above her window,',
+      'Wondering how darkness could look so beautiful.',
+      '',
+      'No painter could perfectly capture its movement,',
+      'No poet could measure the grace it adds to her face.',
+      'It is not simply another feature to admire;',
+      'It is an entire composition within her portrait.',
+      '',
+      'And when the light touches it at the right moment,',
+      'Even the most beautiful paintings seem incomplete.'
+    ]
+  },
+  {
+    num:19, title:'The Secret Language of Her Lips', subtitle:'', category:'Her Face',
+    intro:'Her lips have a language beyond the words they speak — a delicate expression that gives silence its own meaning.',
+    text:[
+      'Her lips have a language beyond the words they speak,',
+      'A delicate expression that gives silence its own meaning.',
+      'They carry the possibility of a thousand smiles,',
+      'And the tenderness of conversations that never become ordinary.',
+      '',
+      'There is grace in their natural expression,',
+      'A softness that no ornament could improve.',
+      'When she speaks, they give shape to her gentle voice;',
+      'When she smiles, they become part of the morning.',
+      '',
+      'I could search the finest poetry for an appropriate comparison,',
+      'Yet every metaphor would seem borrowed and insufficient.',
+      'For some details are not meant to be explained,',
+      'They are simply meant to be admired.',
+      '',
+      'And hers are among those details',
+      'That make an ordinary face become unforgettable.'
+    ]
+  },
+  {
+    num:20, title:'The Heart Behind the Beautiful Face', subtitle:'', category:'Her Presence',
+    intro:'If the world admired only her appearance, it would have understood merely the beginning of her story.',
+    text:[
+      'If the world admired only her appearance,',
+      'It would have understood merely the beginning of her story.',
+      'For behind the face that attracts every wandering gaze',
+      'Lives a heart that has spent years caring for others.',
+      '',
+      'She notices responsibilities before they become burdens,',
+      'Understands affection through actions rather than declarations,',
+      'And offers her attention to people she holds dear',
+      'Without expecting every kindness to be returned.',
+      '',
+      'Her beauty may introduce her to the world,',
+      'But her character gives the world a reason to remember her.',
+      'A thousand beautiful faces can attract admiration,',
+      'Yet kindness creates the kind of attachment that lasts.',
+      '',
+      'And perhaps this is what makes her truly extraordinary:',
+      'She is as lovely in the things she does',
+      'As she is in everything that can be seen.'
+    ]
+  },
+  {
+    num:21, title:'If the Stars Had Her Name', subtitle:'', category:'Her Presence',
+    intro:'I wonder what the night would look like if every star carried a fragment of her beauty.',
+    text:[
+      'I wonder what the night would look like',
+      'If every star carried a fragment of her beauty.',
+      'Perhaps the darkness would no longer seem endless,',
+      'And the heavens would have a reason to remain awake.',
+      '',
+      'The moon would lose its confidence in its own radiance,',
+      'The constellations would rearrange themselves to form her name,',
+      'And the quietest corners of the universe',
+      'Would become places where her memory could live.',
+      '',
+      'Yet the stars would still be imperfect comparisons,',
+      'For they shine from a distance and never speak.',
+      'She possesses something the entire sky cannot offer:',
+      'The ability to make beauty feel close enough to touch.',
+      '',
+      'If heaven ever wanted to write a love letter to earth,',
+      'Perhaps it would not use ink or paper.',
+      'Perhaps it would simply create another morning',
+      'And allow Sehar to open her eyes.'
+    ]
+  },
+  {
+    num:22, title:'A Thousand Little Things Called Sehar', subtitle:'', category:'Her Story',
+    intro:'How many different people can one person become without losing the beauty of being herself?',
+    text:[
+      'She is the daughter who waits for her father,',
+      'The sister who remembers what her brothers need,',
+      'The cousin who brings laughter into gatherings,',
+      'And the student whose teachers remember her fondly.',
+      '',
+      'She is the girl who teases people without warning,',
+      'The young woman whose moods change like passing seasons,',
+      'The familiar voice that makes conversations softer,',
+      'And the face that turns attention into admiration.',
+      '',
+      'She is the child her grandfather named with affection,',
+      'The granddaughter remembered by khala and phupho,',
+      'The beloved niece of chachi,',
+      'And the companion her Chachu once shared so much time with.',
+      '',
+      'How many different people can one person become',
+      'Without losing the beauty of being herself?',
+      'Perhaps the answer is hidden in her name:',
+      'Sehar Eman Shahid, a thousand little things in one soul.'
+    ]
+  },
+  {
+    num:23, title:'The Morning That Never Ends', subtitle:'', category:'Her Story',
+    intro:'Her name begins with Sehar — the hour before daylight, that delicate moment when darkness begins to surrender.',
+    text:[
+      'Her name begins with Sehar, the hour before daylight,',
+      'That delicate moment when darkness begins to surrender.',
+      'There is something fitting about a name like hers,',
+      'For she carries the suggestion of a beautiful beginning.',
+      '',
+      'Morning does not compete with the stars,',
+      'It simply arrives and makes their departure meaningful.',
+      'It does not announce its importance through noise,',
+      'It allows the world to discover its presence through light.',
+      '',
+      'Perhaps her grandfather unknowingly chose a metaphor,',
+      'A name that would continue describing her through the years.',
+      'For some people carry the warmth of a sunrise,',
+      'Even when the circumstances around them are cloudy.',
+      '',
+      'And if every beautiful morning had to be given a name,',
+      'I would not search beyond the one she already carries.',
+      'The world has its sunrise;',
+      'My poetry has Sehar.'
+    ]
+  },
+  {
+    num:24, title:'The Unfinished Masterpiece', subtitle:'', category:'Her Face',
+    intro:'If I were given every colour ever discovered, I would still hesitate before attempting her portrait.',
+    text:[
+      'If I were given every colour ever discovered,',
+      'I would still hesitate before attempting her portrait.',
+      'If I possessed the finest brush of every painter,',
+      'I would fear that the canvas might not deserve her.',
+      '',
+      'For how does one paint the expression of her eyes,',
+      'The quiet elegance hidden inside her voice,',
+      'The softness of her character,',
+      'Or the memories that have shaped her into herself?',
+      '',
+      'A portrait could preserve her appearance,',
+      'But it could never preserve the way she makes people feel.',
+      'A photograph could remember a particular smile,',
+      'But it could never explain why that smile matters.',
+      '',
+      'Perhaps the greatest artists understood this long ago:',
+      'Some masterpieces are not meant to be completed.',
+      'They remain unfinished because the subject',
+      'Continues giving the world something new to admire.'
+    ]
+  },
+  {
+    num:25, title:'To Sehar, From a World That Ran Out of Words', subtitle:'', category:'Her Presence',
+    intro:'Dear Sehar, if these pages ever reach your hands, know that they were written for more than your appearance.',
+    text:[
+      'Dear Sehar, if these pages ever reach your hands,',
+      'Know that they were written for more than your appearance.',
+      'They were written for the little girl you once were,',
+      'And for the extraordinary woman you continue becoming.',
+      '',
+      'For the father whose arrival completed your evenings,',
+      'For the grandfather who gave your name its beginning,',
+      'For the brothers who found a second mother in their sister,',
+      'And for the family whose affection followed you everywhere.',
+      '',
+      'For the eyes that have interrupted ordinary moments,',
+      'For the voice that makes conversations feel peaceful,',
+      'For the smile that could have inspired another century of poetry,',
+      'And for the heart that gives your beauty its meaning.',
+      '',
+      'If Mir had written seven volumes, I would write twenty-five,',
+      'If Ghalib had exhausted his metaphors, I would invent new ones.',
+      'If the moon asked why I no longer praised its beauty,',
+      'I would tell it that I had finally found something more worthy.',
+      '',
+      'You are the morning hidden inside your own name,',
+      'A beautiful chapter that time cannot simply erase.',
+      'And should every dictionary lose the meaning of beauty,',
+      'Let the world remember one name:',
+      '',
+      '<em>Sehar Eman Shahid.</em>',
+      '',
+      '<em>Some people are described by poetry. Some people become the reason poetry exists.</em>'
+    ]
+  },
+  {
+    num:26, title:'Her Hair', subtitle:'The Poetry of Unrestrained Beauty', category:'Her Hair',
+    intro:'There is a kind of writing that no pen has ever learned — the slow, careless calligraphy of her hair across the air.',
+    text:[
+      'Her hair does not simply fall upon her shoulders,',
+      'It descends like midnight surrendering to the wind.',
+      'A thousand darkened verses move with every breeze,',
+      'As though the evening has found a place to live.',
+      '',
+      'I wonder whether the wind ever feels fortunate,',
+      'For it is permitted to wander through her hair,',
+      'To disturb what even the finest artists admire,',
+      'And leave behind a beauty it cannot carry elsewhere.',
+      '',
+      'There is something almost unfair about its elegance,',
+      'The way it frames her face without asking for attention,',
+      'The way each strand seems to understand its purpose,',
+      'As though nature had rehearsed this composition for years.',
+      '',
+      'If the night ever wished to become beautiful,',
+      'It would borrow the colour of her hair.',
+      'And if the darkness ever needed a reason to be admired,',
+      'It would ask to fall across her shoulders once again.'
+    ]
+  },
+  {
+    num:27, title:'Those Eyes', subtitle:'Where My Wandering Finally Ends', category:'Her Eyes',
+    intro:'Some eyes are doors. Hers are destinations.',
+    text:[
+      'I have never been particularly good at staying,',
+      'My thoughts have always wandered beyond familiar places.',
+      'I have looked at countless beautiful things without hesitation,',
+      'Yet her eyes have accomplished what the world could not.',
+      '',
+      'They are not merely two features upon a beautiful face,',
+      'They are the quietest interruption to an ordinary existence.',
+      'One glance, and suddenly the mind forgets its journey,',
+      'As though every road was secretly leading there.',
+      '',
+      'There is a softness in their ordinary expression,',
+      'A hidden intensity that changes with her emotions,',
+      'And when displeasure finds its way into her gaze,',
+      'Even silence seems to become a little more careful.',
+      '',
+      'I could spend a lifetime studying their expressions,',
+      'And still discover something I had never noticed before.',
+      'For some eyes are beautiful because of their appearance,',
+      'Hers are unforgettable because they make the world disappear.'
+    ]
+  },
+  {
+    num:28, title:'Her Smile', subtitle:'A Small Revolution Against Sadness', category:'Her Smile',
+    intro:'There are smiles that decorate a face. Hers rearranges the weather.',
+    text:[
+      'She smiles without knowing what it accomplishes,',
+      'Unaware that a little happiness has changed its address.',
+      'The corners of her lips rise almost effortlessly,',
+      'And suddenly an ordinary moment becomes worth remembering.',
+      '',
+      'There is no grand announcement before her smile,',
+      'No warning that something beautiful is about to happen.',
+      'It simply arrives, as naturally as spring after winter,',
+      'And leaves the surrounding world a little less difficult.',
+      '',
+      'Perhaps the sun has spent centuries perfecting its light,',
+      'Yet never understood the simplicity of her expression.',
+      'For the sun must illuminate an entire world,',
+      'While she needs only a moment to brighten one.',
+      '',
+      'If sadness ever asks me where happiness hides,',
+      'I shall not point towards the heavens or distant gardens.',
+      'I will remember the way Sehar smiles,',
+      'And let that memory answer everything.'
+    ]
+  },
+  {
+    num:29, title:'The Art of Her Face', subtitle:'', category:'Her Face',
+    intro:'A face is a landscape. Hers is a country I would like to live in.',
+    text:[
+      'Her face is a composition without a single unnecessary detail,',
+      'A beautiful arrangement that needs no explanation.',
+      'Her cheeks carry the softness of a spring afternoon,',
+      'Her nose gives her profile its delicate distinction.',
+      '',
+      'Her lips seem to have borrowed their grace from silence,',
+      'And her forehead holds an effortless elegance.',
+      'Every feature contributes something different to the whole,',
+      'Yet none attempts to outshine the others.',
+      '',
+      'The greatest painters searched for perfect proportions,',
+      'The finest sculptors devoted lifetimes to symmetry,',
+      'But nature completed her portrait without an audience,',
+      'And left the world to discover its own masterpiece.',
+      '',
+      'If I were asked to describe her in one sentence,',
+      'I would refuse the limitations of such a task.',
+      'For how can a single line contain an entire portrait',
+      'When every detail deserves its own chapter?'
+    ]
+  },
+  {
+    num:30, title:'The Girl in Red', subtitle:'', category:'Her Elegance',
+    intro:'She wore red the way a fire wears its own heat — naturally, and without asking permission.',
+    text:[
+      'There she sits, wrapped in the poetry of crimson,',
+      'While sunlight writes golden letters across her hair.',
+      'Her gaze has fallen somewhere beyond the present moment,',
+      'And the world appears too busy to notice the miracle.',
+      '',
+      'The red upon her shoulders resembles a quiet flame,',
+      'Not one that burns, but one that warms the imagination.',
+      'Her dark hair travels freely with the passing breeze,',
+      'As though even the wind wishes to accompany her.',
+      '',
+      'She does not seem to know she is being admired,',
+      'Her attention belongs to something beyond the photograph.',
+      'And perhaps that is the secret of her elegance:',
+      'She looks most beautiful when she is simply herself.',
+      '',
+      'I would frame this particular moment in a gallery,',
+      'Not for the colour of the dress or the sunlight,',
+      'But because somewhere inside this ordinary afternoon,',
+      'An extraordinary portrait happened without trying.'
+    ]
+  },
+  {
+    num:31, title:'The Garden Could Not Compete', subtitle:'', category:'Her Presence',
+    intro:'Flowers, it turns out, are capable of embarrassment.',
+    text:[
+      'She stood among the trees, surrounded by green,',
+      'With the sky stretching endlessly above her.',
+      'The flowers had their season, the trees their history,',
+      'And the garden had spent years becoming beautiful.',
+      '',
+      'Yet when she turned towards the camera,',
+      'The landscape became an arrangement rather than a destination.',
+      'The leaves continued their conversations with the breeze,',
+      'But the photograph found its centre in her.',
+      '',
+      'She held a book about love in her hands,',
+      'As though the universe had arranged a private joke.',
+      'For why would someone carry a book to understand affection',
+      'When her own presence could inspire an entire volume?',
+      '',
+      'The garden may preserve its flowers through the seasons,',
+      'But I would preserve this moment beyond time.',
+      'For even nature must occasionally accept',
+      'That it has been given some remarkable company.'
+    ]
+  },
+  {
+    num:32, title:'The Yellow of Her Happiness', subtitle:'', category:'Her Expressions',
+    intro:'There is a shade of yellow that exists only on the days she is happy.',
+    text:[
+      'There are colours that belong to particular seasons,',
+      'And there are colours that seem to belong to certain people.',
+      'Yellow was never merely a shade in a wardrobe;',
+      'It became a little brighter when she wore it.',
+      '',
+      'Standing beneath the trees, she carried the warmth of daylight,',
+      'With a dark scarf adding contrast to her graceful appearance.',
+      'Her expression held the innocence of an unhurried afternoon,',
+      'And her smile gave the photograph its quiet celebration.',
+      '',
+      'The autumn leaves could have written their own poetry,',
+      'The branches could have spoken about the passing years,',
+      'But the picture would still have returned to one subject:',
+      'A girl whose presence made the garden feel alive.',
+      '',
+      'Perhaps sunshine has always been looking for a home,',
+      'And perhaps it found one in that yellow dress.'
+    ]
+  },
+  {
+    num:33, title:'A Portrait in Pink', subtitle:'', category:'Her Elegance',
+    intro:'Pink was only a colour. Until she wore it. Then it became a language.',
+    text:[
+      'The pink fabric rests around her like a gentle evening,',
+      'Its little details catching the light with every movement.',
+      'She sits with the composure of an old royal portrait,',
+      'Yet her expression retains the warmth of an ordinary girl.',
+      '',
+      'Her earrings carry the elegance of another century,',
+      'While her eyes belong entirely to the present.',
+      'The garden becomes a distant arrangement of colours,',
+      'And every passing detail seems to lead towards her.',
+      '',
+      'There is no need for a crown upon her head,',
+      'No palace required to establish her grace.',
+      'Some women make royal clothing look beautiful,',
+      'Others make ordinary surroundings look like palaces.',
+      '',
+      'And in this particular portrait,',
+      'The colour is beautiful, the setting is beautiful,',
+      'But the most beautiful thing remains the person wearing it.'
+    ]
+  },
+  {
+    num:34, title:'When She Looks Away', subtitle:'', category:'Her Expressions',
+    intro:'Beauty does not always need to meet another gaze. Sometimes its greatest expressions happen when nobody asks.',
+    text:[
+      'I have often wondered why a photograph becomes memorable,',
+      'Even when the person within it is not looking at the camera.',
+      'Perhaps beauty does not always need to meet another gaze,',
+      'Perhaps its greatest expressions happen when nobody asks.',
+      '',
+      'There is something remarkable about her lowered eyes,',
+      'The quietness of her face when she is lost in thought.',
+      'She seems to be listening to a conversation within herself,',
+      'While the outside world continues without interruption.',
+      '',
+      'Her eyelashes create a delicate boundary around her gaze,',
+      'And her expression carries a thousand unspoken possibilities.',
+      'I could write about the eyes that meet mine,',
+      'But I find myself equally captivated by those that do not.',
+      '',
+      'For even when she looks somewhere else,',
+      'My attention somehow remains exactly where she is.'
+    ]
+  },
+  {
+    num:35, title:'The Wind Knows Her Name', subtitle:'', category:'Her Hair',
+    intro:'The wind has no memory, or so the world believes. But I wonder whether it remembers that afternoon.',
+    text:[
+      'The wind has no memory, or so the world believes,',
+      'It passes through gardens without keeping a single secret.',
+      'But I wonder whether it remembers that afternoon,',
+      'When it found her hair and refused to move gently.',
+      '',
+      'It travelled through the strands that framed her face,',
+      'Played with the ends that rested upon her shoulders,',
+      'And turned a still photograph into a moment of movement,',
+      'A moment no painter could have completely invented.',
+      '',
+      'Perhaps the wind was simply passing through,',
+      'Perhaps it had no intention of becoming part of the picture.',
+      'Yet everything it touched became more beautiful,',
+      'And everything it disturbed seemed to find its place.',
+      '',
+      'If the wind ever returns to that particular afternoon,',
+      'I hope it remembers whom it was fortunate enough to meet.'
+    ]
+  },
+  {
+    num:36, title:'The Silence Between Her Words', subtitle:'', category:'Her Expressions',
+    intro:'She does not need to speak continuously to remain interesting. There is a certain grace in her quiet expressions.',
+    text:[
+      'She does not need to speak continuously to remain interesting,',
+      'Nor does she need to fill every moment with conversation.',
+      'There is a certain grace in her quiet expressions,',
+      'A peacefulness that exists even when her lips are still.',
+      '',
+      'Sometimes her eyes seem to be having conversations',
+      'That her words have not yet decided to reveal.',
+      'Her lowered gaze carries the softness of reflection,',
+      'And her silence gives the surrounding world room to breathe.',
+      '',
+      'I have heard beautiful speeches delivered by eloquent people,',
+      'And read thousands of carefully constructed sentences,',
+      'Yet I find something unusually precious in her quietness,',
+      'Something that cannot be reproduced through vocabulary.',
+      '',
+      'Perhaps the finest poetry is not always spoken;',
+      'Sometimes it simply sits before you, wearing a gentle expression.'
+    ]
+  },
+  {
+    num:37, title:'Her Profile — A Sculptor\'s Impossible Dream', subtitle:'', category:'Her Face',
+    intro:'If a sculptor had been asked to create elegance, he might have spent years studying the lines of her face.',
+    text:[
+      'If a sculptor had been asked to create elegance,',
+      'He might have spent years studying the lines of her face.',
+      'The gentle curve of her profile, the grace of her nose,',
+      'The natural harmony that makes every angle distinct.',
+      '',
+      'There is a quiet beauty in the way she turns,',
+      'In the little details that photographs preserve unexpectedly.',
+      'Her face does not depend on a particular expression,',
+      'For every angle offers another reason to admire it.',
+      '',
+      'The sculptor would eventually put down his tools,',
+      'Not because his work had reached perfection,',
+      'But because he would finally understand something:',
+      'Some beauty cannot be improved by human hands.'
+    ]
+  },
+  {
+    num:38, title:'The Girl Who Makes Colours Meaningful', subtitle:'', category:'Her Elegance',
+    intro:'Red became a memory when she wore it. Yellow became sunshine. Pink became an evening worth preserving.',
+    text:[
+      'Red became a memory when she wore it,',
+      'Yellow became sunshine when she stood beneath the trees,',
+      'Pink became an evening worth preserving,',
+      'And every photograph acquired its own atmosphere.',
+      '',
+      'It is strange how colours usually describe their surroundings,',
+      'Yet sometimes a person gives those colours meaning.',
+      'The fabric, the scenery, the light and the shadows',
+      'Become details in a story about someone else.',
+      '',
+      'I could fill an entire gallery with these moments,',
+      'And give every photograph a title of its own.',
+      'But every description would eventually return',
+      'To the same beautiful subject.',
+      '',
+      'Perhaps colours do not become more beautiful on their own;',
+      'Perhaps they simply become more memorable around her.'
+    ]
+  },
+  {
+    num:39, title:'A Smile Beneath the Afternoon Sun', subtitle:'', category:'Her Smile',
+    intro:'The afternoon had nothing extraordinary planned. Then she turned with a smile that changed the photograph.',
+    text:[
+      'The afternoon had nothing extraordinary planned,',
+      'The sky was blue and the trees were standing still.',
+      'Somewhere between the sunlight and the passing moments,',
+      'She turned with a smile that changed the photograph.',
+      '',
+      'There is a tenderness in that expression,',
+      'A little confidence mixed with an innocent charm.',
+      'Her eyes seem to carry the happiness of the moment,',
+      'While her lips preserve the beginning of a laugh.',
+      '',
+      'I wonder whether she remembers that exact afternoon,',
+      'Whether the conversation was ordinary or particularly funny,',
+      'Whether she knew that someone might one day look back',
+      'And find an entire poem hidden inside her smile.',
+      '',
+      'Some memories are made through extraordinary events;',
+      'Others are made simply because someone smiled.'
+    ]
+  },
+  {
+    num:40, title:'Beyond Every Photograph', subtitle:'', category:'Her Presence',
+    intro:'Four photographs can preserve four different moments. But none can preserve the entirety of the person.',
+    text:[
+      'Four photographs can preserve four different moments,',
+      'But none can preserve the entirety of the person.',
+      'One remembers her hair moving with the wind,',
+      'Another remembers her among the trees.',
+      '',
+      'One holds the warmth of yellow,',
+      'Another the elegance of pink.',
+      'Yet none can capture the gentle voice between conversations,',
+      'Or the changing expressions that make her so familiar.',
+      '',
+      'A camera can preserve the shape of a smile,',
+      'But not the happiness that created it.',
+      'It can remember the direction of her eyes,',
+      'But not the thousand emotions resting behind them.',
+      '',
+      'And perhaps this is why I keep returning to poetry:',
+      'A photograph tells me what she looked like,',
+      'But poetry allows me to keep discovering',
+      'Everything that makes Sehar unforgettable.'
+    ]
+  }
+];
+
+/* ================== GALLERY DATA (25 images mapped to poems) ================== */
+const galleryItems = [
+  {img:'Sehar1.jpg', caption:'The girl who made the wind fall in love with her hair.', poemIdx:25},
+  {img:'Sehar2.jpg', caption:'A gaze where wandering hearts find their destination.', poemIdx:26},
+  {img:'Sehar3.jpg', caption:'A smile that gives ordinary afternoons a reason to shine.', poemIdx:27},
+  {img:'Sehar4.jpg', caption:'Elegance was never a dress; it was always her.', poemIdx:28},
+  {img:'Sehar5.jpg', caption:'Some photographs capture beauty. This one captures a feeling.', poemIdx:29},
+  {img:'Sehar6.jpg', caption:'The world kept moving, but this moment deserved to stay.', poemIdx:30},
+  {img:'Sehar7.jpg', caption:'A little sunshine dressed in yellow.', poemIdx:31},
+  {img:'Sehar8.jpg', caption:'An entire poem hidden behind a quiet expression.', poemIdx:32},
+  {img:'Sehar9.jpg', caption:'She wore the afternoon like a second skin.', poemIdx:33},
+  {img:'Sehar10.jpg', caption:'A portrait the mirror itself wanted to remember.', poemIdx:34},
+  {img:'Sehar11.jpg', caption:'When she looked away, the room forgot how to speak.', poemIdx:35},
+  {img:'Sehar12.jpg', caption:'The wind has been in love with her since that day.', poemIdx:36},
+  {img:'Sehar13.jpg', caption:'A silence that said more than any conversation could.', poemIdx:37},
+  {img:'Sehar14.jpg', caption:'A profile sculptors would weep trying to carve.', poemIdx:38},
+  {img:'Sehar15.jpg', caption:'The girl who made every colour feel chosen.', poemIdx:39},
+  {img:'Sehar16.jpg', caption:'A smile beneath the afternoon sun — the world paused.', poemIdx:2},
+  {img:'Sehar17.jpg', caption:'Beyond every photograph, there is a feeling she left behind.', poemIdx:0},
+  {img:'Sehar18.jpg', caption:'Eyes that hold entire libraries of quiet stories.', poemIdx:1},
+  {img:'Sehar19.jpg', caption:'A garden that could not compete with her presence.', poemIdx:4},
+  {img:'Sehar20.jpg', caption:'The soft rebellion of a girl who smiles without reason.', poemIdx:15},
+  {img:'Sehar21.jpg', caption:'Pink was never a colour until she wore it.', poemIdx:33},
+  {img:'Sehar22.jpg', caption:'A face that poets would spend lifetimes trying to describe.', poemIdx:2},
+  {img:'Sehar23.jpg', caption:'The art of her — written in every small gesture.', poemIdx:28},
+  {img:'Sehar24.jpg', caption:'A girl in red, and the world quietly rearranged itself.', poemIdx:29},
+  {img:'Sehar25.jpg', caption:'Beyond the frame — where her poetry truly begins.', poemIdx:24}
+];
+
+/* ================== BEAUTY FEATURES DATA ================== */
+const features = [
+  {
+    title:'Her Eyes', label:'Chapter I', img:'Sehar2.jpg',
+    poem:[
+      'There are places on this earth that one visits and forgets,',
+      'And then there are her eyes —',
+      'A destination where even a restless heart wishes to settle.',
+      '',
+      'There is a universe hidden behind those lashes,',
+      'A thousand unspoken stories resting beneath their silence.',
+      'Even when anger visits her delicate expression,',
+      'Her eyes become an entirely different kind of spectacle,',
+      'As though two tiny storms have gathered behind the glass',
+      'Of the most beautiful windows ever made.'
+    ]
+  },
+  {
+    title:'Her Hair', label:'Chapter II', img:'Sehar1.jpg',
+    poem:[
+      'Her hair does not simply fall upon her shoulders,',
+      'It descends like midnight surrendering to the wind.',
+      'A thousand darkened verses move with every breeze,',
+      'As though the evening has found a place to live.',
+      '',
+      'I wonder whether the wind ever feels fortunate,',
+      'For it is permitted to wander through her hair,',
+      'And leave behind a beauty it cannot carry elsewhere.'
+    ]
+  },
+  {
+    title:'Her Smile', label:'Chapter III', img:'Sehar3.jpg',
+    poem:[
+      'She smiles without knowing what it accomplishes,',
+      'Unaware that a little happiness has changed its address.',
+      'It simply arrives, as naturally as spring after winter,',
+      'And leaves the surrounding world a little less difficult.',
+      '',
+      'If sadness ever asks me where happiness hides,',
+      'I will remember the way Sehar smiles,',
+      'And let that memory answer everything.'
+    ]
+  },
+  {
+    title:'Her Lips', label:'Chapter IV', img:'Sehar10.jpg',
+    poem:[
+      'Her lips have a language beyond the words they speak,',
+      'A delicate expression that gives silence its own meaning.',
+      'They carry the possibility of a thousand smiles,',
+      'And the tenderness of conversations that never become ordinary.',
+      '',
+      'For some details are not meant to be explained,',
+      'They are simply meant to be admired.'
+    ]
+  },
+  {
+    title:'Her Voice', label:'Chapter V', img:'Sehar13.jpg',
+    poem:[
+      'Some voices travel through the air and disappear,',
+      'But hers has the tenderness of something unforgettable,',
+      'A melody that does not require music to become beautiful.',
+      '',
+      'She speaks, and the sharpness of the world becomes softer.',
+      'If silence ever learns to admire something,',
+      'It must be the sound of Sehar speaking.'
+    ]
+  },
+  {
+    title:'Her Personality', label:'Chapter VI', img:'Sehar11.jpg',
+    poem:[
+      'Her moods are like weather over an unfamiliar landscape —',
+      'A little sunshine, a sudden cloud, an unexpected storm.',
+      'She can be adorably unreasonable,',
+      'Beautifully dramatic, unexpectedly quiet,',
+      'And so irresistibly cute in her changing moods',
+      'That even a complaint becomes difficult to take seriously.',
+      '',
+      'The world may prefer predictable seasons,',
+      'But those close to her understand the privilege of variation.'
+    ]
+  },
+  {
+    title:'Her Elegance', label:'Chapter VII', img:'Sehar24.jpg',
+    poem:[
+      'She does not need to compete with the morning,',
+      'Nor borrow elegance from expensive ornaments.',
+      'There is an effortless distinction in her appearance,',
+      'A kind of beauty that does not ask permission to exist.',
+      '',
+      'If beauty were a language, she would be its finest literature,',
+      'If elegance were music, she would be its quietest symphony.',
+      'She is beautiful in a way that makes saying so unavoidable.'
+    ]
+  }
+];
+
+/* ================== STORY TIMELINE DATA ================== */
+const timeline = [
+  {year:'2004', title:'The Morning of Her Arrival', text:'On the nineteenth of March, in Pind Bahadur Khan, near Bahtar and Wah Cantt, a little girl arrived — first imagined as Eman Shahid, then gifted the name Sehar Eman Shahid by her grandfather.'},
+  {year:'Her Beginnings', title:'A Delicate Beginning', text:'She was once a little girl who needed extra care, a delicate beginning that gradually found its strength, protected by everyone\'s affection.'},
+  {year:'Ahl-e-Tashi', title:'Stories of Courage and Love', text:'Raised in an Ahl-e-Tashi household, on stories of Hazrat Ali and Hazrat Hussain — where devotion was never an ordinary word.'},
+  {year:'The Eldest', title:'A Crown Earned Through Love', text:'Eldest daughter among four siblings. She learned to notice what others overlooked, to understand silence before it became a complaint.'},
+  {year:'Her Father', title:'The Blessing He Called His', text:'A father who considered her a blessing before the world did. She waited for him, postponed dinner until he returned, treasured every journey beside him.'},
+  {year:'Her Brothers', title:'A Mother in the Shape of a Sister', text:'She became shelter before they understood the meaning of shelter. Her hands carried the tenderness of motherhood.'},
+  {year:'The Family', title:'Everyone\'s Favourite', text:'Khala, Phupho, Chachi, her beloved Chachu, cousins — every relative had a different story about her, and somehow every story ended with the same affection.'},
+  {year:'School Days', title:'The Classroom\'s Unwritten Rule', text:'Intelligent enough to earn admiration, mischievous enough to keep the classroom interesting. She made every place she studied feel a little more alive.'},
+  {year:'Today', title:'A Universe Written in Verses', text:'The little girl from Pind Bahadur Khan has become someone\'s favourite subject of poetry — and the reason this universe was built.'}
+];
+
+/* ================== INIT ================== */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('hide'), 1800);
+  createPetals();
+  createDust();
+  buildGallery();
+  buildBookshelf();
+  buildBeauty();
+  buildTimeline();
+  initCursor();
+  initScrollReveal();
+});
+
+/* ================== PETALS & DUST ================== */
+function createPetals(){
+  const c = document.getElementById('petals');
+  for(let i=0;i<18;i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.left = Math.random()*100 + '%';
+    p.style.animationDuration = (12 + Math.random()*15) + 's';
+    p.style.animationDelay = (Math.random()*15) + 's';
+    p.style.transform = `scale(${.6 + Math.random()*.8})`;
+    c.appendChild(p);
+  }
+}
+function createDust(){
+  const c = document.getElementById('dust');
+  for(let i=0;i<35;i++){
+    const d = document.createElement('div');
+    d.className = 'dust-particle';
+    d.style.left = Math.random()*100 + '%';
+    d.style.top = Math.random()*100 + '%';
+    d.style.animationDuration = (4 + Math.random()*6) + 's';
+    d.style.animationDelay = (Math.random()*8) + 's';
+    c.appendChild(d);
+  }
+}
+
+/* ================== NAVIGATION ================== */
+function goTo(pageId){
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+  document.querySelectorAll('nav ul li a').forEach(a => a.classList.remove('active'));
+  const link = document.querySelector(`nav ul li a[data-page="${pageId}"]`);
+  if(link) link.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+  document.getElementById('navmenu').classList.remove('open');
+  setTimeout(initScrollReveal, 100);
+  if(pageId === 'letter') revealLetter();
+}
+function toggleMenu(){
+  document.getElementById('navmenu').classList.toggle('open');
+}
+function enterUniverse(){
+  goTo('gallery');
+}
+
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('topnav');
+  if(window.scrollY > 50) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+/* ================== BUILD GALLERY ================== */
+function buildGallery(){
+  const grid = document.getElementById('galleryGrid');
+  galleryItems.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = `gallery-item g${i+1}`;
+    div.innerHTML = `
+      <img src="Sehar/${item.img}" alt="Sehar ${i+1}" loading="lazy"/>
+      <div class="poem-num">Poem ${poems[item.poemIdx].num}</div>
+      <div class="caption">${item.caption}</div>
+    `;
+    div.addEventListener('click', () => openPoem(item.poemIdx));
+    grid.appendChild(div);
+  });
+}
+
+/* ================== BUILD BOOKSHELF ================== */
+function buildBookshelf(){
+  const shelf = document.getElementById('bookshelf');
+  shelf.innerHTML = '';
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const activeCat = document.querySelector('.chip.active').dataset.cat;
+  
+  poems.forEach((poem, i) => {
+    if(activeCat !== 'all' && poem.category !== activeCat) return;
+    if(search && !poem.title.toLowerCase().includes(search)) return;
+    
+    const div = document.createElement('div');
+    div.className = `book b${(i%6)+1}`;
+    const excerpt = poem.text.find(l => l.trim().length > 0) || '';
+    div.innerHTML = `
+      <div class="book-num">Poem ${String(poem.num).padStart(2,'0')}</div>
+      <div class="book-title">${poem.title}</div>
+      <div class="book-excerpt">"${excerpt.replace(/<[^>]+>/g,'').substring(0,60)}..."</div>
+      <div class="open-label">Open Poem →</div>
+    `;
+    div.addEventListener('click', () => openPoem(i));
+    shelf.appendChild(div);
+    setTimeout(() => div.classList.add('visible'), 50 * shelf.children.length);
+  });
+}
+
+function filterBooks(){ buildBookshelf(); }
+function filterCat(cat, el){
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  buildBookshelf();
+}
+
+/* ================== BUILD BEAUTY ================== */
+function buildBeauty(){
+  const wrap = document.getElementById('beautyWrap');
+  features.forEach((f, i) => {
+    const card = document.createElement('div');
+    card.className = `feature-card ${i%2===1?'reverse':''}`;
+    card.innerHTML = `
+      <div class="feature-visual">
+        <img src="Sehar/${f.img}" alt="${f.title}" loading="lazy"/>
+      </div>
+      <div class="feature-text">
+        <div class="label">${f.label}</div>
+        <h3>${f.title}</h3>
+        <div class="poem">
+          ${f.poem.map(l => l ? `<p>${l}</p>` : '<p>&nbsp;</p>').join('')}
+        </div>
+        <div class="signature">— Written by Eman Zahid</div>
+      </div>
+    `;
+    wrap.appendChild(card);
+  });
+}
+
+/* ================== BUILD TIMELINE ================== */
+function buildTimeline(){
+  const tl = document.getElementById('timeline');
+  timeline.forEach((t, i) => {
+    const item = document.createElement('div');
+    item.className = 'tl-item';
+    item.innerHTML = `
+      <div class="year">${t.year}</div>
+      <h4>${t.title}</h4>
+      <p>${t.text}</p>
+    `;
+    tl.appendChild(item);
+  });
+}
+
+/* ================== POEM MODAL ================== */
+let currentPoemIdx = 0;
+function openPoem(idx){
+  currentPoemIdx = idx;
+  renderPoem(idx);
+  document.getElementById('poemOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function renderPoem(idx){
+  const poem = poems[idx];
+  const imgIdx = galleryItems.findIndex(g => g.poemIdx === idx);
+  const img = imgIdx >= 0 ? `Sehar/${galleryItems[imgIdx].img}` : `Sehar/Sehar${(idx%25)+1}.jpg`;
+  
+  const modal = document.getElementById('poemModal');
+  modal.innerHTML = `
+    <div class="photo-frame">
+      <img src="${img}" alt="Sehar"/>
+    </div>
+    <div class="poem-content">
+      <div class="poem-number">Poem ${String(poem.num).padStart(2,'0')} · ${poem.category}</div>
+      <h2>${poem.title}</h2>
+      ${poem.subtitle ? `<div class="poem-subtitle">${poem.subtitle}</div>` : ''}
+      <div class="poem-intro">${poem.intro}</div>
+      <div class="poem-text">
+        ${poem.text.map((line, i) => {
+          const delay = i * 0.08;
+          return line ? `<p style="animation-delay:${delay}s">${line}</p>` : `<p style="animation-delay:${delay}s">&nbsp;</p>`;
+        }).join('')}
+      </div>
+      <div class="signature">— Written by Eman Zahid</div>
+      <div class="poem-nav">
+        <button onclick="prevPoem()" ${idx===0?'disabled style="opacity:.4"':''}>← Previous</button>
+        <button class="back-btn" onclick="closePoem()">Back to Gallery</button>
+        <button onclick="nextPoem()" ${idx===poems.length-1?'disabled style="opacity:.4"':''}>Next →</button>
+      </div>
+    </div>
+  `;
+}
+function closePoem(){
+  document.getElementById('poemOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function nextPoem(){
+  if(currentPoemIdx < poems.length - 1){
+    currentPoemIdx++;
+    renderPoem(currentPoemIdx);
+    document.getElementById('poemOverlay').scrollTo({top:0, behavior:'smooth'});
+  }
+}
+function prevPoem(){
+  if(currentPoemIdx > 0){
+    currentPoemIdx--;
+    renderPoem(currentPoemIdx);
+    document.getElementById('poemOverlay').scrollTo({top:0, behavior:'smooth'});
+  }
+}
+
+/* ================== LETTER REVEAL ================== */
+function revealLetter(){
+  const ps = document.querySelectorAll('#letterPaper p');
+  ps.forEach((p, i) => {
+    setTimeout(() => p.classList.add('revealed'), 400 + i*500);
+  });
+}
+
+/* ================== SCROLL REVEAL ================== */
+function initScrollReveal(){
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+      }
+    });
+  }, {threshold:0.15});
+  
+  document.querySelectorAll('.gallery-item, .book, .feature-card, .tl-item').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+/* ================== CUSTOM CURSOR ================== */
+function initCursor(){
+  if(!window.matchMedia('(hover:hover)').matches) return;
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mx=0, my=0, rx=0, ry=0;
+  
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top = my + 'px';
+  });
+  
+  function animate(){
+    rx += (mx - rx) * 0.15;
+    ry += (my - ry) * 0.15;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(animate);
+  }
+  animate();
+  
+  document.querySelectorAll('a, button, .gallery-item, .book, .feature-card').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+  });
+}
+
+/* ESC closes poem */
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closePoem();
+  if(e.key === 'ArrowRight' && document.getElementById('poemOverlay').classList.contains('active')) nextPoem();
+  if(e.key === 'ArrowLeft' && document.getElementById('poemOverlay').classList.contains('active')) prevPoem();
+});
+</script>
+</body>
+</html>
